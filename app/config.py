@@ -1,10 +1,11 @@
 # Define the CIDR ranges for the Auckland AZ in Nectar Cloud
-TARGET_CIDR = None
+TEST_CIDR = ""
 
+TARGET_CIDRS = [
+]
 
 # Change me to desired security risk type
 SECURITY_RISK_TYPE_TARGET = "password-ssh"
-
 
 # Set lookup dictionary for security risk types
 SECURITY_RISK_TYPE_LOOKUP = {
@@ -13,7 +14,6 @@ SECURITY_RISK_TYPE_LOOKUP = {
     "accessible-db": "cb9feb63-88ba-4016-91ed-347e8806aed8",
     "accessible-rdp": "db27aeb2-6e0f-4aa3-8440-043f131bf979",
 }
-
 
 # Set lookup dictionary for Tenable plugin IDs
 SECURITY_RISK_TYPE_TENABLE_PLUGINS = {

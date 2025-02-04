@@ -21,13 +21,10 @@ def main():
     print("[*] Fetching vulnerabilities from Tenable...")
     findings = tenable_helpers.get_findings_based_on_cidr_and_vulns()
 
+    print(f"[*] Total found: {len(findings)}")
+
     for finding in findings:
         print(f"[*] Processing: {finding['ip_address']}...")
-
-        # Skip any finding where the state is not OPEN
-        if finding["state"] != "OPEN":
-            print("    [!] Finding is not OPEN... Skipping.")
-            continue
 
         # Get the instance ID and project ID based on the IP address and date
         lookup_result = varroa_helpers.get_instance_based_on_ip_history(finding["ip_address"], finding["last_found"])
@@ -39,13 +36,13 @@ def main():
             finding["instance_id"] = lookup_result[0]
             finding["project_id"] = lookup_result[1]
 
-        # Check if the security risk already exists
-        security_risk_exists = varroa_helpers.check_security_risk_exists(finding)
-        if security_risk_exists:
-            print("    [!] Security risk already exists... Skipping.")
-            continue
-        else:
-            print("    [*] Security risk does not exist...")
+        # # Check if the security risk already exists
+        # security_risk_exists = varroa_helpers.check_security_risk_exists(finding)
+        # if security_risk_exists:
+        #     print("    [!] Security risk already exists... Skipping.")
+        #     continue
+        # else:
+        #     print("    [*] Security risk does not exist...")
 
         # Create the security risk
         result = varroa_helpers.create_security_risk(finding)
