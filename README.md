@@ -16,7 +16,7 @@ pip install -r requirements.txt
 
 Change configurations in the `app/config.py` file, including:
 
-- `TARGET_CIDR`: Since Tenable can have a lot of findings, we can limit results to a specific CIDR range
+- `TARGET_CIDRS`: Since Tenable can have a lot of findings, we can limit results to a specific list of CIDR ranges
 - `SECURITY_RISK_TYPE_TARGET`: Select a specific risk type, based on the defined risk types already in Nectar Cloud (e.g., "password-ssh")
 
 Set environment variables. Ensure you have the following credentials set in your environment variables. We use the [openstack-bash-creds-helper](https://github.com/NeCTAR-RC/openstack-bash-creds-helper) tool.
