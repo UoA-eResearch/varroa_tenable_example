@@ -119,6 +119,9 @@ def process_all(results, tio, cidr_obj, risk_type):
         if state == "OPEN" or state == "REOPENED":
             print("        processing ", result["last_found"], result["state"] )
             # Convert last_found to datetime object
+            if last_found[-4:] == ':00Z':
+                last_found = last_found[:-4] + ':00.00Z'
+
             last_found = datetime.strptime(last_found, "%Y-%m-%dT%H:%M:%S.%fZ")
 
             # Get the asset in Tenable Cloud
